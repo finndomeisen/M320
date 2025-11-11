@@ -1,8 +1,8 @@
-public class Main {
+public class main {
     public static void main(String[] args) {
         // Zwei Objekte instanziieren
-        Auto auto1 = new Auto("Rotes", 50);
-        Auto auto2 = new Auto("Blaues", 60);
+        auto auto1 = new auto("Rotes", 50);
+        auto auto2 = new auto("Blaues", 60);
 
         // Zustand anzeigen
         System.out.println("Anfangsgeschwindigkeiten:");

@@ -1,10 +1,10 @@
-public class Auto {
+public class auto {
     // Attribute (gekapselt)
     private String farbe;
     private int geschwindigkeit;
 
     // Konstruktor
-    public Auto(String farbe, int geschwindigkeit) {
+    public auto(String farbe, int geschwindigkeit) {
         this.farbe = farbe;
         this.geschwindigkeit = geschwindigkeit;
     }
@@ -40,7 +40,7 @@ public class Auto {
     }
 
     // Methode für Kommunikation zwischen Objekten
-    public void rennenMit(Auto gegner) {
+    public void rennenMit(auto gegner) {
         System.out.println(farbe + "es Auto fährt ein Rennen gegen das " + gegner.getFarbe() + "e Auto!");
         if (this.geschwindigkeit > gegner.getGeschwindigkeit()) {
             System.out.println(farbe + "es Auto gewinnt!");
