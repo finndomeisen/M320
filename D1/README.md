@@ -1,4 +1,4 @@
-# 🚗 OOP Beispiel – Klassen, Objekte und Kapselung
+# D1
 
 ## Ziel
 Dieses Projekt zeigt, wie man in Java Klassen mit Konstruktoren, Methoden und gekapselten Attributen erstellt.  
@@ -6,7 +6,7 @@ Es wird auch demonstriert, wie Objekte miteinander kommunizieren und wie sich ih
 
 ---
 
-## 💡 Lernziele
+## Lernziele
 
 - Ich kann Klassen mit Attributen, Konstruktoren und Methoden definieren.  
 - Ich kann Objekte instanziieren.  
@@ -16,7 +16,7 @@ Es wird auch demonstriert, wie Objekte miteinander kommunizieren und wie sich ih
 
 ---
 
-## 🔧 Aufbau
+## Aufbau
 **Klasse:** `Auto`
 - Attribute: `farbe`, `geschwindigkeit`
 - Konstruktor: setzt Startwerte
@@ -28,7 +28,4 @@ Es wird auch demonstriert, wie Objekte miteinander kommunizieren und wie sich ih
 
 **Main-Klasse:** erstellt zwei Autos, ruft Methoden auf und zeigt Zustandsänderungen.
 
----
-
-## 🧠 Beispielausgabe
 
