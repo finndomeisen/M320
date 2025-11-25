@@ -1,4 +1,4 @@
-Fragen beantwortet
+# Fragen beantwortet
 
 Müssen Getter und Setter Methoden auch im Diagramm abgebildet werden?
 → Meistens: Nein, wenn man nur die logischen Klassen und ihre HAT/„hat“ (Komposition/Aggregation) Beziehungen darstellt. 
