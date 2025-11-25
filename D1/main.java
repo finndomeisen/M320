@@ -1,104 +1,158 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
+    private static Scanner sc = new Scanner(System.in);
+    private static Nutzer eingeloggterNutzer = null;
+
+    private static Bank bank = new Bank("Zentralbank");
 
     public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-        ArrayList<BankAccount> konten = new ArrayList<>();
-
-        int choice;
-
-        do {
-            System.out.println("\n--- Bank Menü ---");
-            System.out.println("1: Konto erstellen");
-            System.out.println("2: Einzahlen");
-            System.out.println("3: Abheben");
-            System.out.println("4: Ueberweisen");
-            System.out.println("5: Konten anzeigen");
+        while (true) {
+            System.out.println("\n--- Hauptmenu ---");
+            System.out.println("1: Nutzer registrieren");
+            System.out.println("2: Einloggen");
+            System.out.println("3: Ausloggen");
+            System.out.println("4: Konto erstellen");
+            System.out.println("5: Einzahlen");
+            System.out.println("6: Abheben");
+            System.out.println("7: Ueberweisen");
+            System.out.println("8: Konten anzeigen");
             System.out.println("0: Beenden");
             System.out.print("Auswahl: ");
-            choice = sc.nextInt();
-            sc.nextLine();
 
-            switch (choice) {
+            int wahl = Integer.parseInt(sc.nextLine());
 
-                case 1:
-                    System.out.print("Name fuer neues Konto: ");
-                    String name = sc.nextLine();
-                    konten.add(new BankAccount(name));
-                    System.out.println("Konto fuer " + name + " erstellt.");
-                    break;
-
-                case 2:
-                    if (konten.isEmpty()) {
-                        System.out.println("Keine Konten vorhanden.");
-                        break;
-                    }
-                    BankAccount kEinzahlen = waehleKonto(konten, sc);
-                    System.out.print("Betrag einzahlen: ");
-                    kEinzahlen.deposit(sc.nextDouble());
-                    break;
-
-                case 3:
-                    if (konten.isEmpty()) {
-                        System.out.println("Keine Konten vorhanden.");
-                        break;
-                    }
-                    BankAccount kAbheben = waehleKonto(konten, sc);
-                    System.out.print("Betrag abheben: ");
-                    kAbheben.withdraw(sc.nextDouble());
-                    break;
-
-                case 4:
-                    if (konten.size() < 2) {
-                        System.out.println("Mindestens zwei Konten noetig.");
-                        break;
-                    }
-
-                    System.out.println("Von welchem Konto?");
-                    BankAccount von = waehleKonto(konten, sc);
-
-                    System.out.println("Auf welches Konto?");
-                    BankAccount zu = waehleKonto(konten, sc);
-
-                    System.out.print("Betrag ueberweisen: ");
-                    double betrag = sc.nextDouble();
-
-                    von.transfer(zu, betrag);
-                    break;
-
-                case 5:
-                    if (konten.isEmpty()) {
-                        System.out.println("Keine Konten vorhanden.");
-                    } else {
-                        for (int i = 0; i < konten.size(); i++) {
-                            BankAccount k = konten.get(i);
-                            System.out.println(i + ": " + k.getOwner() + " hat " + k.getBalance() + " CHF");
-                        }
-                    }
-                    break;
-
-                case 0:
-                    System.out.println("Programm beendet.");
-                    break;
-
-                default:
-                    System.out.println("Ungueltige Eingabe.");
+            switch (wahl) {
+                case 1 -> nutzerRegistrieren();
+                case 2 -> einloggen();
+                case 3 -> ausloggen();
+                case 4 -> kontoErstellen();
+                case 5 -> einzahlen();
+                case 6 -> abheben();
+                case 7 -> ueberweisen();
+                case 8 -> bank.alleKontenAnzeigen();
+                case 0 -> System.exit(0);
+                default -> System.out.println("Ungueltige Auswahl.");
             }
-
-        } while (choice != 0);
-
-        sc.close();
+        }
     }
 
-    public static BankAccount waehleKonto(ArrayList<BankAccount> konten, Scanner sc) {
-        for (int i = 0; i < konten.size(); i++) {
-            System.out.println(i + ": " + konten.get(i).getOwner());
+    private static void nutzerRegistrieren() {
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        eingeloggterNutzer = new Nutzer(name);
+        System.out.println("Nutzer erstellt und eingeloggt!");
+    }
+
+    private static void einloggen() {
+        if (eingeloggterNutzer != null) {
+            System.out.println("Du bist bereits eingeloggt als: " + eingeloggterNutzer.getName());
+            return;
         }
-        System.out.print("Konto waehlen (Index): ");
-        int index = sc.nextInt();
-        return konten.get(index);
+        System.out.print("Name: ");
+        String name = sc.nextLine();
+        eingeloggterNutzer = new Nutzer(name);
+        System.out.println("Eingeloggt als: " + name);
+    }
+
+    private static void ausloggen() {
+        if (eingeloggterNutzer == null) {
+            System.out.println("Kein Nutzer eingeloggt.");
+            return;
+        }
+        eingeloggterNutzer = null;
+        System.out.println("Ausgeloggt.");
+    }
+
+    private static void kontoErstellen() {
+        checkLogin();
+        System.out.print("Kontoname: ");
+        String name = sc.nextLine();
+        bank.kontoErstellen(name, eingeloggterNutzer);
+        System.out.println("Konto erstellt!");
+    }
+
+    private static void einzahlen() {
+        checkLogin();
+        Konto k = kontoAuswahl();
+        if (k == null) return;
+
+        System.out.print("Betrag: ");
+        double b = Double.parseDouble(sc.nextLine());
+        k.einzahlen(b);
+        System.out.println("Einzahlung erfolgreich.");
+    }
+
+    private static void abheben() {
+        checkLogin();
+        Konto k = kontoAuswahl();
+        if (k == null) return;
+
+        System.out.print("Betrag: ");
+        double b = Double.parseDouble(sc.nextLine());
+        if (!k.abheben(b)) {
+            System.out.println("Nicht genug Geld.");
+        } else {
+            System.out.println("Abhebung erfolgreich.");
+        }
+    }
+
+    private static void ueberweisen() {
+        checkLogin();
+        System.out.println("Von welchem Konto?");
+        Konto von = kontoAuswahl();
+        if (von == null) return;
+
+        System.out.println("Auf welches Konto (Name eingeben)?");
+        String zielName = sc.nextLine();
+        Konto auf = bank.kontoFinden(zielName);
+
+        if (auf == null) {
+            System.out.println("Zielkonto existiert nicht!");
+            return;
+        }
+
+        System.out.print("Betrag: ");
+        double b = Double.parseDouble(sc.nextLine());
+
+        if (!von.abheben(b)) {
+            System.out.println("Nicht genug Geld.");
+            return;
+        }
+
+        auf.einzahlen(b);
+        System.out.println("Ueberweisung erfolgreich.");
+    }
+
+    private static Konto kontoAuswahl() {
+        ArrayList<Konto> meine = bank.getKontenVon(eingeloggterNutzer);
+
+        if (meine.isEmpty()) {
+            System.out.println("Du hast keine Konten.");
+            return null;
+        }
+
+        System.out.println("Deine Konten:");
+        for (int i = 0; i < meine.size(); i++) {
+            System.out.println((i + 1) + ": " + meine.get(i).getKontoname()
+                    + " | Saldo: " + meine.get(i).getSaldo());
+        }
+
+        System.out.print("Auswahl: ");
+        int wahl = Integer.parseInt(sc.nextLine()) - 1;
+
+        if (wahl < 0 || wahl >= meine.size()) {
+            System.out.println("Ungueltig!");
+            return null;
+        }
+
+        return meine.get(wahl);
+    }
+
+    private static void checkLogin() {
+        if (eingeloggterNutzer == null) {
+            System.out.println("Bitte zuerst einloggen!");
+            throw new IllegalStateException("Nicht eingeloggt");
+        }
     }
 }
