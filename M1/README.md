@@ -15,3 +15,6 @@ Das ist bei dir nicht der Fall.
 
 Reicht eine Assoziation ohne Pfeil?
 → Ja, aber mit Pfeil ist besser, wenn die Richtung klar erkennbar sein soll.
+
+
+![Foto](UML.png)
