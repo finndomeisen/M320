@@ -23,7 +23,7 @@ class LootWeapon implements Comparable<LootWeapon> {
 
     @Override
     public String toString() {
-        return name + " | Damage: " + damage + " | RarityLevel: " + rarityLevel;
+        return name + " - Damage: " + damage + " - RarityLevel: " + rarityLevel;
     }
 }
 
@@ -58,9 +58,9 @@ public class MainB {
     public static void main(String[] args) {
         Loadout loadout = new Loadout();
 
-        loadout.add(new LootWeapon("Pump Shotgun", 95, 4));   // Epic
-        loadout.add(new LootWeapon("Assault Rifle", 33, 3));  // Rare
-        loadout.add(new LootWeapon("Bolt Sniper", 110, 5));   // Legendary
+        loadout.add(new LootWeapon("Pump Shotgun", 110, 5));   // Legendary
+        loadout.add(new LootWeapon("Assault Rifle", 35, 4));  // Epic
+        loadout.add(new LootWeapon("Heavy Sniper", 143, 3));   // Rare
 
         System.out.println("Dein Loadout:");
         for (LootWeapon w : loadout) {

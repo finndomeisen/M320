@@ -1,20 +1,21 @@
-// Oberklasse - allgemeine Fortnite Waffe
 abstract class Weapon {
     protected String name;
     protected int damage;
     protected String rarity;
+    // es gibt private, public und protected, protected bedeutet dass nicht alle zugreifen können, sondern nur die eigene Klasse,
+    // alle Unterklassen und alle Klassen im gleichen Package
 
     public Weapon(String name, int damage, String rarity) {
         this.name = name;
         this.damage = damage;
         this.rarity = rarity;
+        // man braucht es wenn die Parameter gleich heissen
     }
 
-    // jede Waffe hat einen eigenen "fire"-Effekt
+    // jede Waffe hat einen eigenen fire Effekt
     public abstract void fire();
-
     public void info() {
-        System.out.println(name + " | Damage: " + damage + " | Rarity: " + rarity);
+        System.out.println(name + " - Damage: " + damage + " - Rarity: " + rarity);
     }
 }
 
@@ -22,25 +23,24 @@ abstract class Weapon {
 class Shotgun extends Weapon {
 
     public Shotgun(String rarity) {
-        super("Pump Shotgun", 95, rarity);
+        super("Pump Shotgun", 110, rarity);
     }
 
     @Override
     public void fire() {
-        System.out.println("BOOM! Gegner wird zur Loot Pinata.");
+        System.out.println("HANG! Gegner wird zur Loot Pinata");
     }
 }
-
 // Unterklasse: Assault Rifle
 class AssaultRifle extends Weapon {
 
     public AssaultRifle(String rarity) {
-        super("Assault Rifle", 33, rarity);
+        super("Scar", 35, rarity);
     }
 
     @Override
     public void fire() {
-        System.out.println("Ratatata! Lasergewehr – eher nicht.");
+        System.out.println("SKR POW! SKR POW! RATATATA!");
     }
 }
 
@@ -48,27 +48,28 @@ class AssaultRifle extends Weapon {
 class Sniper extends Weapon {
 
     public Sniper(String rarity) {
-        super("Bolt Sniper", 110, rarity);
+        super("Heavy Sniper", 143, rarity);
     }
 
     @Override
     public void fire() {
-        System.out.println("KRRACK! Gegner reported dich wegen Aimbot.");
+        System.out.println("POOOOWWWWWW!!!! Aus dem Leben geschallert!");
     }
 }
 
 public class MainA {
     public static void main(String[] args) {
-        Weapon w1 = new Shotgun("Epic");
-        Weapon w2 = new AssaultRifle("Rare");
-        Weapon w3 = new Sniper("Legendary");
+        Weapon w1 = new Shotgun("Legendary");
+        Weapon w2 = new AssaultRifle("Epic");
+        Weapon w3 = new Sniper("Rare");
 
         w1.info();
-        w2.info();
-        w3.info();
-
         w1.fire();
+
+        w2.info();
         w2.fire();
+        
+        w3.info();
         w3.fire();
     }
 }
