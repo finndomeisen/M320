@@ -2,8 +2,8 @@
 
 ## 1. Implementation A
 
-Hier habe ich eine Oberklasse Weapon erstellt.
-Alle Fortnite-Waffen erben davon und teilen sich Eigenschaften wie Name, Schaden und Seltenheit.
+Hier ist eine Oberklasse Weapon.
+Alle Fortnite Waffen erben davon und teilen sich Eigenschaften wie Name, Schaden und Seltenheit.
 Die abstrakte Methode fire() wird in jeder Unterklasse anders implementiert.
 
 ---
