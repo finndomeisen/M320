@@ -12,6 +12,14 @@ abstract class Weapon {
         // man braucht es wenn die Parameter gleich heissen
     }
 
+    static int DamageRechner(int zahl1, int zahl2, int zahl3) {
+        return zahl1 + zahl2 + zahl3;
+    }
+
+    static int DamageRechner(int zahl1, int zahl2){
+        return zahl1 + zahl2;
+    }
+
     // jede Waffe hat einen eigenen fire Effekt
     public abstract void fire();
     public void info() {
@@ -21,9 +29,10 @@ abstract class Weapon {
 
 // Unterklasse: Shotgun
 class Shotgun extends Weapon {
+    
 
     public Shotgun(String rarity) {
-        super("Pump Shotgun", 110, rarity);
+        super("Pump Shotgun", DamageRechner(100, 25), rarity);
            
     }
 

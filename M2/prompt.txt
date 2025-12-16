@@ -1,0 +1,11 @@
+starter Java erstellt Picture ruft picture.draw auf 
+
+draw erstellt new square mit namen wall weil haus wand und bewegt es dann mit square.moveHorizontal(ruft erase auf und draw passt xPosition += distance an distance wird beim funktionsaufruf mitgegeben) .movevertical(ruft erase auf und draw passt xPosition += distance an distance wird beim funktionsaufruf mitgegeben) Changesize(ruft erase() auf dann size = newSIze new size wird mitgegeben dann wir draw() aufgerufen) makevisible(setzt isVisible = true und ruft draw() auf)
+
+anschliessend erstellt draw genau das selbe einfach anstat wall window und ruf zusätulich changeColor("blue")(das setzt Color = newcolor und ruft draw() auf)
+
+anschliessend wird ein new Triangel() names Roof erstellt dann wird aufgerufen alles genau wie beim ersten also bei wall
+
+anschliessend wird sun new circle() erstellt dann wie bei window alles angepasst auch sie hat farbe
+
+anschliessent ruft draw Clouds.makeVibel auf Clouds = new Clouds wurde oben unter public Picture bereits instanciert allso vor allem dann wird auch noch Clouds.animateClouds aufgerufen (ruft immer im loop moveHorizontal auf mit wert (5) DANN SLEEP  für 20 und dann weiter bis i = 0 i <200 i ++

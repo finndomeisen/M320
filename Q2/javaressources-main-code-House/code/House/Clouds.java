@@ -1,3 +1,11 @@
+/**
+ * Clouds let you display clouds with an animation
+ *
+ * @author: Finn Aidan Carl Domeisen
+ * @author: Beda Valon Brunner
+ *
+ * @version 2025.12.16
+ */
 public class Clouds {
     private Circle c1;
     private Circle c2;
@@ -82,15 +90,19 @@ public class Clouds {
         c7.moveVertical(distance);
         c8.moveVertical(distance);
     }
-
+    
+    /**
+     * Animation for clouds
+     * <p>
+     * Clouds fly from left to right
+     * </p>
+    **/
     public void animateClouds() {
-        // Wolken fliegen weiter von links nach rechts
         for (int i = 0; i < 200; i++) {
             moveHorizontal(5);
             try {
-                Thread.sleep(20);  // kleine Verzögerung für flüssige Animation
+                Thread.sleep(20);
             } catch (InterruptedException e) {
-                // Unterbrechung ignorieren - Animation beenden
                 Thread.currentThread().interrupt();
                 break;
             }
