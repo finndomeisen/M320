@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class PokemonSelector {
 
-    public String selectPokemon() {
+    public String selectPokemon() throws PokemonApiException {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Wähle ein Pokémon-Ei aus:");
@@ -27,6 +27,9 @@ public class PokemonSelector {
         }
 
         int randomNum = (int) (Math.random() * 101) + 1;
+        if (randomNum < 1 || randomNum > 101) {
+            throw new PokemonApiException("Ungültige Zufallszahl: " + randomNum);
+        }
         String url = "https://pokeapi.co/api/v2/pokemon-form/" + randomNum;
         return url;
     }
