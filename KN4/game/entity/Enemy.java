@@ -12,7 +12,7 @@ public class Enemy {
         this.attack = attack;
     }
 
-    public int attackPlayer() {
+    public int attackEnemy() {
         return attack;
     }
 

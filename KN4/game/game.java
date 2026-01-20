@@ -15,6 +15,7 @@ public class Game {
         createPlayer();
         gameLoop();
         endGame();
+        System.out.println("\nSpiel beendet!");
     }
 
     private void printWelcome() {
@@ -44,6 +45,32 @@ public class Game {
         }
     }
 
+    private void exploreEnvironment() {
+        System.out.println("\nUmgebung wird erkundet...");
+        int enemyCount = (int) (Math.random() * 3); // 0-2 Feinde
+        
+        if (enemyCount == 0) {
+            System.out.println("Keine Monster gefunden.");
+            return;
+        }
+        
+        Enemy[] enemies = new Enemy[enemyCount];
+        enemies[0] = new Enemy("Goblin", 30, 5);
+        if (enemyCount > 1) {
+            enemies[1] = new Enemy("Orc", 50, 8);
+        }
+        
+        System.out.println(enemyCount + " Monster gefunden!");
+        for (int i = 0; i < enemies.length; i++) {
+            System.out.println((i + 1) + ". " + enemies[i].getType());
+        }
+        
+        int choice = readInt("Welches Monster angreifen? (0 zum Abbrechen):");
+        if (choice > 0 && choice <= enemies.length) {
+            startFight(enemies[choice - 1]);
+        }
+    }
+
     private void printMenu() {
         System.out.println();
         System.out.println("1 Kaempfen");
@@ -54,7 +81,65 @@ public class Game {
     private void startFight() {
         Enemy enemy = new Enemy("Goblin", 30, 5);
         System.out.println("Ein " + enemy.getType() + " erscheint");
-        System.out.println("Kampfsystem folgt spaeter");
+        
+        boolean fightRunning = true;
+        while (fightRunning && player.isAlive() && enemy.isAlive()) {
+            System.out.println("\nDein Health: " + player.getHealth() + " | Enemy Health: " + enemy.getHealth());
+            int playerDamage = player.attackEnemy();
+            enemy.takeDamage(playerDamage);
+            System.out.println("Du machst " + playerDamage + " Schaden!");
+            
+            if (!enemy.isAlive()) {
+                System.out.println("Monster besiegt!");
+                player.gainExperience(50);
+                fightRunning = false;
+            } else {
+                int enemyDamage = enemy.attackEnemy();
+                player.takeDamage(enemyDamage);
+                System.out.println("Monster macht " + enemyDamage + " Schaden!");
+                
+                if (!player.isAlive()) {
+                    System.out.println("Du bist besiegt!");
+                    fightRunning = false;
+                }
+            }
+        }
+    }
+
+    private void startFight(Enemy enemy) {
+        System.out.println("\nKampf gegen " + enemy.getType() + "!");
+        
+        boolean fightRunning = true;
+        while (fightRunning && player.isAlive() && enemy.isAlive()) {
+            System.out.println("\nDein Health: " + player.getHealth() + " | Enemy Health: " + enemy.getHealth());
+            int playerDamage = player.attackEnemy();
+            enemy.takeDamage(playerDamage);
+            System.out.println("Du machst " + playerDamage + " Schaden!");
+            
+            if (!enemy.isAlive()) {
+                System.out.println("Monster besiegt!");
+                player.gainExperience(50);
+                fightRunning = false;
+            } else {
+                int enemyDamage = enemy.attackEnemy();
+                player.takeDamage(enemyDamage);
+                System.out.println("Monster macht " + enemyDamage + " Schaden!");
+                
+                if (!player.isAlive()) {
+                    System.out.println("Du bist besiegt!");
+                    fightRunning = false;
+                }
+            }
+        }
+    }
+
+    private void printStatus() {
+        System.out.println("\n=== SPIELERSTATUS ===");
+        System.out.println("Name: " + player.getName());
+        System.out.println("Health: " + player.getHealth());
+        System.out.println("Experience: " + player.getExperience());
+        System.out.println("Lebt: " + (player.isAlive() ? "Ja" : "Nein"));
+        System.out.println("===================");
     }
 
     private void endGame() {

@@ -50,6 +50,11 @@ public class User {
     }
 
     public void printStatus() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("\n=== SPIELERSTATUS ===");
+        System.out.println("Name: " + name);
+        System.out.println("Health: " + health);
+        System.out.println("Experience: " + experience);
+        System.out.println("Lebt: " + (isAlive() ? "Ja" : "Nein"));
+        System.out.println("===================");
     }
 }
