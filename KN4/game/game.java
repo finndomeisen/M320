@@ -1,9 +1,9 @@
 package KN4.game;
 
-public class Game {
+public class game {
 
     private boolean running;
-    private Player player;
+    private user player;
 
     public void startGame() {
         printWelcome();
