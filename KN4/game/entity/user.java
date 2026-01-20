@@ -8,7 +8,7 @@ public class user {
     private int experience;
 
     // Konstruktor
-    public Player(String name, int health, int attack) {
+    public user(String name, int health, int attack) {
         this.name = name;
         this.health = health;
         this.attack = attack;
