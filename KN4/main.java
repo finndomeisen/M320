@@ -1,5 +1,5 @@
 package KN4;
 
-public class main {
+public class Main {
   
 }
