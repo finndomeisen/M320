@@ -3,7 +3,7 @@ package KN4.game;
 public class game {
 
     private boolean running;
-    private user player;
+    private User player;
 
     public void startGame() {
         printWelcome();

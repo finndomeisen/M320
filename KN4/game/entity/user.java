@@ -1,5 +1,5 @@
 package KN4.game.entity;
-public class user {
+public class User {
 
     // Attribute
     private String name;
@@ -8,7 +8,7 @@ public class user {
     private int experience;
 
     // Konstruktor
-    public user(String name, int health, int attack) {
+    public User(String name, int health, int attack) {
         this.name = name;
         this.health = health;
         this.attack = attack;
