@@ -1,10 +1,11 @@
 package KN4.game.entity;
+
 public class User {
 
     // Attribute
-    private String name;
+    private final String name;
     private int health;
-    private int attack;
+    private final int attack;
     private int experience;
 
     // Konstruktor
@@ -46,5 +47,9 @@ public class User {
 
     public boolean isAlive() {
         return health > 0;
+    }
+
+    public void printStatus() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

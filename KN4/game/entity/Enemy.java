@@ -1,9 +1,10 @@
 package KN4.game.entity;
+
 public class Enemy {
 
-    private String type;
+    private final String type;
     private int health;
-    private int attack;
+    private final int attack;
 
     public Enemy(String type, int health, int attack) {
         this.type = type;

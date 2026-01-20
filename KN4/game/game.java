@@ -1,5 +1,8 @@
-package KN4.Game;
+package KN4.game;
 
+import java.util.Scanner;
+
+import KN4.game.entity.Enemy;
 import KN4.game.entity.User;
 
 public class Game {
@@ -20,7 +23,7 @@ public class Game {
     }
 
     private void createPlayer() {
-        String name = InputHelper.readString("Gib deinen Namen ein:");
+        String name = readString("Gib deinen Namen ein:");
         player = new User(name, 100, 10);
         System.out.println("Spieler erstellt: " + player.getName());
     }
@@ -30,20 +33,13 @@ public class Game {
 
         while (running) {
             printMenu();
-            int choice = InputHelper.readInt("Deine Wahl:");
+            int choice = readInt("Deine Wahl:");
 
             switch (choice) {
-                case 1:
-                    startFight();
-                    break;
-                case 2:
-                    player.printStatus();
-                    break;
-                case 3:
-                    running = false;
-                    break;
-                default:
-                    System.out.println("Ungueltige Eingabe");
+                case 1 -> startFight();
+                case 2 -> player.printStatus();
+                case 3 -> running = false;
+                default -> System.out.println("Ungueltige Eingabe");
             }
         }
     }
@@ -63,5 +59,17 @@ public class Game {
 
     private void endGame() {
         System.out.println("Danke fuers Spielen");
+    }
+
+    private static String readString(String prompt) {
+        System.out.print(prompt + " ");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+
+    private static int readInt(String prompt) {
+        System.out.print(prompt + " ");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
     }
 }
