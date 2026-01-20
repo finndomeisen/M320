@@ -1,3 +1,4 @@
+package KN4.game.entity;
 public class Enemy {
 
     private String type;
