@@ -1,6 +1,6 @@
 package KN4.Game;
 
-import KN4.entity.User;
+import KN4.game.entity.User;
 
 public class Game {
 
