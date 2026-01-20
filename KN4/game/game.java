@@ -1,9 +1,12 @@
 package KN4.game;
 
-public class game {
+import KN4.entity.User;
+import KN4.entity.Enemy;
+
+public class Game {
 
     private boolean running;
-    private user player;
+    private User player;
 
     public void startGame() {
         printWelcome();
@@ -19,7 +22,7 @@ public class game {
 
     private void createPlayer() {
         String name = InputHelper.readString("Gib deinen Namen ein:");
-        player = new Player(name);
+        player = new User(name, 100, 10);
         System.out.println("Spieler erstellt: " + player.getName());
     }
 
