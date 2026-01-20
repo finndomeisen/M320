@@ -1,6 +1,6 @@
 package KN4.game;
 
-public class game {
+public class Game {
 
     private boolean running;
     private User player;
