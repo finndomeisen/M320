@@ -1,0 +1,3 @@
+In diesem Projekt wurde ein textbasiertes RPG Spiel als Kommandozeilenanwendung in Java entwickelt. Der Spieler steuert einen Charakter, kaempft gegen Gegner und sammelt Erfahrung sowie Gegenstaende. Die gesamte Interaktion erfolgt ueber Texteingaben in der Konsole.
+
+Das Programm ist objektorientiert aufgebaut. Zentrale Klassen wie Spieler, Gegner und Spielverwaltung sind klar voneinander getrennt. Dadurch ist der Code uebersichtlich, wartbar und einfach erweiterbar. Das Spiel nutzt grundlegende Java Konzepte wie Klassen, Vererbung, Methoden und Kontrollstrukturen. Ziel des Projekts ist es, objektorientiertes Denken sowie logische Programmablaeufe zu vertiefen.
