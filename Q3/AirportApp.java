@@ -52,7 +52,7 @@ public class AirportApp {
     }
 
     // Entfernen mit Iterator
-    public void removeByCode(String code) {
+    public boolean removeByCode(String code) {
         Iterator<Map.Entry<String, String>> iterator = airports.entrySet().iterator();
 
         while (iterator.hasNext()) {
@@ -60,8 +60,10 @@ public class AirportApp {
             if (entry.getKey().equals(code)) {
                 iterator.remove();
                 System.out.println("Flughafen entfernt: " + code);
+                return true;
             }
         }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -80,6 +82,14 @@ public class AirportApp {
 
         System.out.println("\nEntferne JFK:");
         app.removeByCode("JFK");
+
+        System.out.println("\nListe nach dem :");
+        
+        if (app.removeByCode("JFK")) {
+            System.out.println("Flughafen JFK wurde entfernt.");
+        } else {
+            System.out.println("Flughafen JFK nicht gefunden.");
+        }
 
         System.out.println("\nListe nach dem Entfernen:");
         app.printAll();
