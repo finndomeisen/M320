@@ -14,4 +14,9 @@ public class Shop {
     public List<Loot> getItems() {
         return items;
     }
+
+    public List<Loot> setItems(List<Loot> items) {
+        this.items = items;
+        return this.items;
+    }
 }

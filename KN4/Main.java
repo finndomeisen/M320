@@ -39,6 +39,7 @@ public class Main {
 
         System.out.println("1 = Shop betreten");
         System.out.println("2 = Weiter reisen");
+        System.out.println("3: Inventory");
 
         int choice = input.getInt("Wählen Sie: ");
 
@@ -46,6 +47,15 @@ public class Main {
           System.out.println("Shop Inhalte:");
           for (Loot item : settlement.getShop().getItems()) {
             System.out.println("- " + item.getexlpainloot());
+          }
+        }
+
+        if (choice == 3){
+          // TODO Make Inventory Pretty
+          if (player.getInventory() == null){
+            System.out.println("You have nothing in your inventory");
+          }else {
+            System.out.println(player.getInventory());
           }
         }
 
