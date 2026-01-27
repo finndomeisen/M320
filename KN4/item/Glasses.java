@@ -1,14 +1,14 @@
 package item;
 
-public class Crown extends Loot {
+public class Glasses extends Loot {
 
     private int power;
     private String rarity;
 
-    public Crown() {
-        super("Golden Crown found in a random shop. ", 500);
-        this.power = 10;
-        this.rarity = "Legendary";
+    public Glasses() {
+        super("Mysterious Glasses found in a random shop. ", 30);
+        this.power = 1;
+        this.rarity = "Uncommon";
     }
 
     public int getPower() {
