@@ -1,6 +1,8 @@
 package world;
 
 import java.util.LinkedList;
+
+import item.Crown;
 import item.Loot;
 
 public class MapGen {
@@ -27,8 +29,7 @@ public class MapGen {
     private Settlement createSettlement() {
         LinkedList<Loot> shopItems = new LinkedList<>();
 
-        shopItems.add(new Loot("Health Potion +" + worldLevel, 10 * worldLevel));
-        shopItems.add(new Loot("Sword +" + worldLevel, 50 * worldLevel));
+        shopItems.add(new Crown());
 
         Shop shop = new Shop(shopItems);
         return new Settlement(
