@@ -1,19 +1,21 @@
+import java.util.LinkedList;
+
 import combat.Combat;
 import item.Loot;
 import player.Player;
-import world.*;
-
-import java.util.LinkedList;
-import java.util.Scanner;
+import userinput.InputHandler;
+import world.Dungon;
+import world.MapGen;
+import world.Maps;
+import world.Room;
+import world.Settlement;
 
 public class Main {
 
   public static void main(String[] args) {
 
-    Scanner scanner = new Scanner(System.in);
-
-    System.out.print("Geben sie einen Namen an: ");
-    String name = scanner.nextLine();
+    InputHandler input = new InputHandler();
+    String name = input.getString("Geben Sie einen Namen an: ");
     Player player = new Player(name, 20);
 
     System.out.println("Hello " + player.getName());
@@ -38,7 +40,7 @@ public class Main {
         System.out.println("1 = Shop betreten");
         System.out.println("2 = Weiter reisen");
 
-        int choice = scanner.nextInt();
+        int choice = input.getInt("Wählen Sie: ");
 
         if (choice == 1) {
           System.out.println("Shop Inhalte:");
@@ -66,7 +68,7 @@ public class Main {
         }
 
         System.out.println("1 = Weiter reisen");
-        scanner.nextInt();
+        input.getInt("Weiterreisen: ");
         worldIndex++;
       }
 
@@ -82,6 +84,6 @@ public class Main {
       currentLocation = world.get(worldIndex);
     }
 
-    scanner.close();
+    input.closeScanner();
   }
 }
