@@ -1,19 +1,18 @@
 package combat;
 
-import world.Room;
-import enemy.*;
-import player.Player;
-
-
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import enemy.Enemy;
+import player.Player;
+import userinput.InputHandler;
+import world.Room;
 
 public class Combat {
 
     private ArrayList<Enemy> enemies;
     private Player mainPlayer;
     private Room room; // bleibt drin, auch wenn noch ungenutzt
-    private Scanner scanner = new Scanner(System.in);
+    private InputHandler input = new InputHandler();
 
     public Combat(ArrayList<Enemy> enemylist, Player theplayer, Room theroom){
         this.enemies = enemylist;
@@ -36,11 +35,11 @@ public class Combat {
 
             System.out.println("\n1 = Angreifen");
             System.out.println("2 = Heilen ("+mainPlayer.getPassivHealSkill()+")");
-            int choice = scanner.nextInt();
+            int choice = input.getInt("Wähle eine Aktion: ");
 
             if(choice == 1){
                 System.out.println("Welchen Gegner?");
-                int target = scanner.nextInt();
+                int target = input.getInt("Gegner-Nummer: ");
 
                 if(target >= 0 && target < enemies.size()){
                     Enemy enemy = enemies.get(target);
