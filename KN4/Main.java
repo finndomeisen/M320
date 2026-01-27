@@ -2,10 +2,8 @@ import combat.Combat;
 import item.Loot;
 import player.Player;
 import world.*;
-import enemy.*;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -13,7 +11,6 @@ public class Main {
   public static void main(String[] args) {
 
     Scanner scanner = new Scanner(System.in);
-    Random random = new Random();
 
     System.out.print("Geben sie einen Namen an: ");
     String name = scanner.nextLine();
@@ -21,13 +18,12 @@ public class Main {
 
     System.out.println("Hello " + player.getName());
 
-    // Welt generieren
     MapGen mapGen = new MapGen();
     mapGen.generateWorld();
-    ArrayList<Maps> world = mapGen.getWorld();
+    LinkedList<Maps> world = mapGen.getWorld();
 
-    // Start immer im world.Settlement
-    Maps currentLocation = world.get(0);
+    int worldIndex = 0;
+    Maps currentLocation = world.getFirst();
 
     boolean running = true;
 
@@ -52,15 +48,11 @@ public class Main {
         }
 
         if (choice == 2) {
-          currentLocation = getRandomLocation(world, random);
+          worldIndex++;
         }
       }
 
       else if (currentLocation instanceof Dungon dungeon) {
-
-        if (dungeon.getrooms().isEmpty()) {
-          dungeon.generateDungeon(1 + random.nextInt(3));
-        }
 
         Room room = dungeon.getrooms().remove(0);
 
@@ -74,25 +66,22 @@ public class Main {
         }
 
         System.out.println("1 = Weiter reisen");
-        int choice = scanner.nextInt();
-
-        if (choice == 1) {
-          currentLocation = getRandomLocation(world, random);
-        }
+        scanner.nextInt();
+        worldIndex++;
       }
+
+      // =========================
+      // Welt-Ende erreicht
+      // =========================
+      if (worldIndex >= world.size()) {
+        mapGen.nextWorldLevel();
+        world = mapGen.getWorld();
+        worldIndex = 0;
+      }
+
+      currentLocation = world.get(worldIndex);
     }
 
     scanner.close();
-  }
-
-  private static Maps getRandomLocation(ArrayList<Maps> world, Random random) {
-    Maps location = world.get(random.nextInt(world.size()));
-
-    // Falls Dungeon leer ist, neuen erzeugen
-    if (location instanceof Dungon dungeon && dungeon.getrooms().isEmpty()) {
-      dungeon.generateDungeon(1 + random.nextInt(3));
-    }
-
-    return location;
   }
 }

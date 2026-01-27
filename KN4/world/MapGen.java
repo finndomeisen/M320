@@ -1,41 +1,54 @@
 package world;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import item.Loot;
 
 public class MapGen {
 
-    private ArrayList<Maps> world = new ArrayList<>();
+    private LinkedList<Maps> world = new LinkedList<>();
+    private int worldLevel = 1;
 
     public void generateWorld() {
         world.clear();
 
-        // Dungeon leicht
-        Dungon dungeon1 = new Dungon();
-        dungeon1.generateDungeon(1);
+        // =========================
+        // Settlement
+        // =========================
+        world.add(createSettlement());
 
-        // Dungeon schwer
-        Dungon dungeon2 = new Dungon();
-        dungeon2.generateDungeon(3);
-
-        // world.Settlement mit world.Shop
-        ArrayList<Loot> shopItems = new ArrayList<>();
-        shopItems.add(new Loot("Health Potion", 10));
-        shopItems.add(new Loot("Sword", 50));
-
-        Shop villageShop = new Shop(shopItems);
-        Settlement village = new Settlement(
-                "A small peaceful village",
-                villageShop
-        );
-
-        // Alles zur Welt hinzufuegen
-        world.add(village);
-        world.add(dungeon1);
-        world.add(dungeon2);
+        // =========================
+        // Dungeons
+        // =========================
+        world.add(createDungeon(1));
+        world.add(createDungeon(2));
+        world.add(createDungeon(3));
     }
 
-    public ArrayList<Maps> getWorld() {
+    private Settlement createSettlement() {
+        LinkedList<Loot> shopItems = new LinkedList<>();
+
+        shopItems.add(new Loot("Health Potion +" + worldLevel, 10 * worldLevel));
+        shopItems.add(new Loot("Sword +" + worldLevel, 50 * worldLevel));
+
+        Shop shop = new Shop(shopItems);
+        return new Settlement(
+                "Village Level " + worldLevel,
+                shop
+        );
+    }
+
+    private Dungon createDungeon(int baseDifficulty) {
+        Dungon dungeon = new Dungon();
+        dungeon.generateDungeon(baseDifficulty + worldLevel);
+        return dungeon;
+    }
+
+    public void nextWorldLevel() {
+        worldLevel++;
+        generateWorld();
+    }
+
+    public LinkedList<Maps> getWorld() {
         return world;
     }
 }

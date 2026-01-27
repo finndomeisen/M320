@@ -1,19 +1,17 @@
 package world;
 
 import item.Loot;
-
-import java.util.ArrayList;
-
+import java.util.List;
 
 public class Shop {
 
-    private ArrayList<Loot> items = new ArrayList<>();
+    private List<Loot> items;
 
-    public Shop(ArrayList<Loot> items) {
+    public Shop(List<Loot> items) {
         this.items = items;
     }
 
-    public ArrayList<Loot> getItems() {
+    public List<Loot> getItems() {
         return items;
     }
 }
