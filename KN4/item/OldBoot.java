@@ -1,14 +1,14 @@
 package item;
 
-public class Glasses extends Loot {
+public class OldBoot extends Loot {
 
     private int power;
     private String rarity;
 
-    public Glasses() {
-        super("Mysterious Glasses found in a random shop. ", 10);
-        this.power = 1;
-        this.rarity = "Uncommon";
+    public OldBoot() {
+        super("Old, worn boots found in a random shop. ", 5 );
+        this.power = 0;
+        this.rarity = "Common";
     }
 
     public int getPower() {
