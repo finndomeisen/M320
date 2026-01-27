@@ -1,6 +1,8 @@
 package world;
 
 import item.Loot;
+import player.Player;
+
 import java.util.List;
 
 public class Shop {
@@ -9,6 +11,10 @@ public class Shop {
 
     public Shop(List<Loot> items) {
         this.items = items;
+    }
+
+    public Loot Shopping(Player){
+
     }
 
     public List<Loot> getItems() {

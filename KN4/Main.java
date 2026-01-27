@@ -44,10 +44,9 @@ public class Main {
         int choice = input.getInt("Wählen Sie: ");
 
         if (choice == 1) {
+            // TODO Add shop and look that user gets the items in his inventory.
           System.out.println("Shop Inhalte:");
-          for (Loot item : settlement.getShop().getItems()) {
-            System.out.println("- " + item.getexlpainloot());
-          }
+          settlement.getShop().Shopping();
         }
 
         if (choice == 3){
