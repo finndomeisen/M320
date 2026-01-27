@@ -1,7 +1,6 @@
 import java.util.LinkedList;
 
 import combat.Combat;
-import item.Loot;
 import player.Player;
 import userinput.InputHandler;
 import world.Dungon;
@@ -44,9 +43,7 @@ public class Main {
         int choice = input.getInt("Wählen Sie: ");
 
         if (choice == 1) {
-            // TODO Add shop and look that user gets the items in his inventory.
-          System.out.println("Shop Inhalte:");
-          settlement.getShop().Shopping();
+          settlement.getShop().Shopping(player);
         }
 
         if (choice == 3){

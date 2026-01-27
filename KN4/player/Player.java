@@ -1,8 +1,8 @@
 package player;
 
-import item.Loot;
-
 import java.util.ArrayList;
+
+import item.Loot;
 
 public class Player {
   private String name;
@@ -16,10 +16,15 @@ public class Player {
     this.passivHealSkill = 10;
     this.health = healthi;
     this.money = 5;
+    this.inventory = new ArrayList<>();
   }
 
   public ArrayList<Loot> getInventory() {
     return inventory;
+  }
+
+  public void addItem(Loot item) {
+    this.inventory.add(item);
   }
 
   public void setInventory(ArrayList<Loot> inventory) {
